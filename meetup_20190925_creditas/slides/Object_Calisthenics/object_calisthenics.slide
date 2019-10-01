@@ -1,0 +1,229 @@
+Object Calisthenics
+Será que vale a pena aplicar em Go?
+
+25 Set 2019
+
+Francisco Oliveira
+Analista de Sistemas, Iron Mountain
+delley.fx@gmail.com
+https://www.linkedin.com/in/francisco-oliveira/
+@delley_fx
+
+* Motivações e Dinâmica da palestra
+
+* Motivações
+
+- Velhos hábitos (herdados do Java)
+- Artigo *Elton* *Minetto*
+- Duas palestras sobre o assunto na comunidade Go (Floripa e Rio)
+
+: Quando você passa 10 anos na batalha com Java, você acaba adirindo alguns hábitos.. Em Java é mais ou menos assim... você aprende a linguagem e depois padrões... aí os padrões se tornam anti-padrões e novos padrões são criados... nesse ponto você deixa a linguagem de lado e passa a se preocupar só com padrões... Recentemente tivemos a publicação de um artigo sobre o assuto do Elton Minetto e também tivemos duas talks sobre o assunto na comunidade Go, uma em Floripa, apresentada novamente pelo Elton Minetto e uma no Rio, apresentada pelo Fernando Solivas...
+
+.background imgs/back-motivacao.png
+
+* Dinâmica da palestra
+- Interativa
+- Discussão
+
+.background imgs/back-dinamica.png
+
+: A ideia é: eu apresento algum conceito e na sequencia vocês interagem dando a opinião, ponto de vista, se concordam, se não concordam... 
+: e assim fomentamos uma discussão saudável em torno do conceito apresentado
+: Ok!? vocês topam?
+
+* Ok, mas, o que é?
+
+Conjunto de regras apresentadas por Jeff Bay no livro [[https://pragprog.com/book/twa/thoughtworks-anthology][The ThoughtWorks Anthology]]
+
+Código mais:
+
+- legível
+- reutilizável
+- testável
+- manutenível
+
+.background imgs/back-o-que-e.png
+
+: Ok, mas, o que é essa coisa? Resumidamente, é um conjunto de regras apresentadas apresentadas por Jeff Bay no livro The ThoughtWorks Anthology... 
+: e a ideia é que com a aplicação dessas regras seu código se torne mais: legível, reutilizável, testável e manutenível
+
+* As regras...
+
+- One level of indentation per method
+- Don't use the ELSE keyword
+- Wrap all primitives and Strings
+- First class collections
+- One dot per line
+- Don't abbreviate
+- Keep all entities small
+- No classes with more than two instance variables
+- No getters/setters/properties
+
+: É um conjunto de 9 regras... e vamos passar por cada uma delas, entendé-las e quando possível exemplificar com algum código
+
+* Bôra iniciar a discussão?
+
+: Então... bôra inciar a discussão??? bom... primeiramente, é importante salientar que essas regras foram criadas para devs que escreviam códigos Orientado a Objetos, mais especificamente Java... logo, algumas adaptações serão necessárias
+
+- Criadas para OO (Java)
+: No artigo do Elton, ele sugere que o primeiro ponto a considerar seja o nome. a palavra Calisthenics é a junção de duas palavras gregas e significa uma série de exercícios com uma finalizade específica, como por exemplo: melhorar o condicionamento físico. Em nosso contexto, melhorar o condicionamento do nosso código. 
+- Object Calisthenics x Code Calisthenics???
+: Agora... já a palavra Object... hummm, soa estranho, já que não temos o conceito de objetos em Go.. o que o Elton sugere que troquemos de Object para Code... o que para mim, faz todo sentido... e para vocês? 
+
+
+.image imgs/GOPHER_SHARE.png _ 650
+
+* #1 One level of indentation per method (1/4)
+
+.code src/code01.go /show code1/,/end show code1/
+.caption _Code_ _by_ [[http://biancarosa.com.br/slides/go-clean-code-2.html][Bianca Rosa]]
+
+: Aplicar essa regra permite que o nosso código se torne mais legível
+
+* #1 One level of indentation per method (2/4)
+
+.code src/code01.go /show code2/,/end show code2/
+.caption _Code_ _by_ [[http://biancarosa.com.br/slides/go-clean-code-2.html][Bianca Rosa]]
+
+.code src/code01.go /show code3/,/end show code3/
+.caption _Code_ _by_ [[http://biancarosa.com.br/slides/go-clean-code-2.html][Bianca Rosa]]
+
+* #1 One level of indentation per method (3/4)
+
+.code src/code01.go /show code4/,/end show code4/
+.caption _Code_ _by_ [[http://biancarosa.com.br/slides/go-clean-code-2.html][Bianca Rosa]]
+
+.code src/code01.go /show code5/,/end show code5/
+.caption _Code_ _by_ [[http://biancarosa.com.br/slides/go-clean-code-2.html][Bianca Rosa]]
+
+* #1 One level of indentation per method (4/4)
+
+.code src/code01.go /show code6/,/end show code6/
+.caption _Code_ _by_ [[http://biancarosa.com.br/slides/go-clean-code-2.html][Bianca Rosa]]
+
+* #2 Don't use the ELSE keyword
+
+.code src/code02.go /show Login/,/end show Login/
+
+Podemos aplicar o conceito *Early*Return* e remover o *else* da função
+
+.code src/code02.go /show Login2/,/end show Login2/
+
+: A ideia aqui é evitarmos o uso da palavra else, gerando um código limpo e mais rápido, já que tem menos fluxos de execução
+
+* #3 Wrap all primitives and Strings
+
+.code src/code03.go /show person1/,/end show person1/
+
+- DDD: Value Objects / Comportamento / Regras para validação e formatação
+
+.code src/code03.go /show person2/,/end show person2/
+
+: Tipos primitivos que possuem comportamento devem ser encapsulados, no nosso caso em structs ou types e não em classes
+: Dessa forma, a lógica do comportamento fica encapsulada e fácil de dar manutenção 
+
+* #4 First class collections
+
+- Cada coleção é agrupada em sua própria classe
+- Os comportamentos relacionados à coleção agora possuem uma *"casa"*
+
+.code src/code04.go
+
+: Se você tiver um conjunto de elementos e precisar manipulá-los, crie uma estrutura dedicada para essa coleção
+: Assim comportamentos relacionados à coleção, como ﬁltros, ordenação, storage, etc., serão implementados por sua própria estrutura
+
+* #5 One dot per line
+
+- Não encadei funções, a não ser que... façam parte do mesmo contexto
+
+.code src/code05.go /show code1/,/end show code1/
+
+- Converse apenas com seus amigos imediatos: [[http://wiki.c2.com/?LawOfDemeter][Lei de Demeter]]
+.code src/code05.go /show code2/,/end show code2/
+-  OK: [[https://en.wikipedia.org/wiki/Method_chaining][Method Chaining Pattern]] / [[https://www.martinfowler.com/bliki/FluentInterface.html][Fluent Interface]]
+
+: Essa regra cita que você não deve encadear chamadas de funções... a não ser que façam parte do mesmo contexto. 
+
+* #6 Don't abbreviate
+
+- Essa é uma das regras que não se aplica diretamente a Go
+
+A comunidade tem suas próprias regras:
+
+- [[https://github.com/golang/go/wiki/CodeReviewComments#variable-names][Variables Names -> Code Review Comments]]
+- [[https://dave.cheney.net/practical-go/presentations/qcon-china.html#_identifiers][Identifiers -> Practical Go: Real world advice for writing maintainable Go programs]]
+
+: Esta regra é uma das que não se aplica diretamente a Go
+: A comunidade tem suas próprias regras para a criação de nomes de variáveis, inclusive razões para isso
+: Como por exemplo, a regra básica é: quanto mais longe da declaração for o uso, mais descritivo deve ser.
+: Para um method receiver, uma ou duas letras é suficiente
+: Variáveis comuns, como índices de loop e readers, podem ser uma única letra (i, r)
+: Coisas mais incomuns e variáveis globais precisam de nomes mais descritivos
+: Recomendo a leitura do capítulo Variables Names do Code Review Comments e do capítulo Identifiers do Practical Go: Real world advice for writing maintainable Go programs 
+
+* #7 Keep all entities small
+
+- Menos de 50 linhas por classe e menos de 10 arquivos por pacote 
+- Go não tem classe, vamos adaptar para nossas *structs* / *interfaces* / *funções*???
+- 15/20 linhas por função???
+- Reduzir o escopo
+
+: O que são entidades pequenas???
+: Apesar de não existir o conceito de classes em Go, a ideia desta regra é que as entidades sejam pequenas.
+: Podemos adaptar a ideia para criarmos structs, interfaces ou funções pequenas e que podem ser usadas, via composição, para formar componentes maiores 
+
+* #8 No classes with more than two instance variables (1/3)
+
+- Polêmica
+- Decompor estruturas complexas em estruturas simples
+
+.code src/code06.go /show code1/,/end show code1/
+
+.code src/code06.go /show code2/,/end show code2/
+
+: Essa é uma das regras que para mim é um pouco polêmica e difíceis de adaptar em qualquer linguagem...e vou mostrar o porquê disso
+: A ideia principal é decompor estruturas complexas em estruturas simples, com no máximo duas instâncias/membros
+: Com isso você tem um baixo acoplamento e alta coesão... mas
+
+* #8 No classes with more than two instance variables (2/3)
+
+- Aplicar as regras 3 e 4
+
+.code src/code06.go /show code3/,/end show code3/
+
+* #8 No classes with more than two instance variables (3/3)
+
+- Alguém tem alguma ideia de como refatorar???
+
+.code src/code06.go /show code4/,/end show code4/
+
+: Juntar o nome da rua com o número em uma struct?
+: Cidade e Estado, formariam qual struct? 
+
+* #9 No getters/setters/properties
+
+- Já seguimos essa regra!
+- Go não tem suporte automático para Getters e Setters
+- A comunidade não tem o costume de usar esse tipo artifício
+- Não há nada de errado, e geralmente é apropriado fornecê-los
+- Porém... não é idiomático colocar o *Get* no nome do *Getter*
+
+.code src/code07.go
+.caption _Code_ _by_ [[https://golang.org/doc/effective_go.html#Getters][Effective Go - Getters]]
+
+: Exemplo de sacar dinheiro e depositar em uma conta bancária
+
+* Referências
+
+- [[https://eltonminetto.net/post/2019-06-01-object-calisthenics-golang/][Elton Minetto: Object Calisthenics em Golang - Artigo]]
+- [[https://speakerdeck.com/solivaf/gopherio-4-object-calisthenics][Fernando Solivas: Object Calisthenics - Slides]]
+- [[https://youtu.be/6j9dvIL_JNQ?t=299][Bia Rosa: Boas Práticas & Clean Code com Go - Vídeo]]
+- [[http://biancarosa.com.br/slides/go-clean-code-2.html][Bia Rosa: Boas Práticas & Clean Code com Go - Slides]]
+- [[http://wiki.c2.com/?LawOfDemeter][Law Of Demeter - Artigo]]
+- [[https://en.wikipedia.org/wiki/Method_chaining][Method Chaining - Wiki]]
+- [[https://www.martinfowler.com/bliki/FluentInterface.html][Martin Fowler: Fluent Interface - Artigo]]
+- [[https://github.com/golang/go/wiki/CodeReviewComments#variable-names][Variables Names - Code Review Comments - Wiki]]
+- [[https://dave.cheney.net/practical-go/presentations/qcon-china.html#_identifiers][Dave Cheney: Practical Go - Artigo]]
+- [[https://golang.org/doc/effective_go.html#Getters][Getters - Effective Go - Doc]]
+- [[https://pt.slideshare.net/PaweLewtak/object-calisthenics-pyconpl-2016][Paweł Lewtak: Object calisthenics (PyCon Poland 2016) - Slides]]
+- [[https://medium.com/@rafaelcruz_48213/desenvolva-um-c%C3%B3digo-melhor-com-object-calisthenics-d5364767a9ba][Rafael Cruz: Desenvolva um código melhor com Object Calisthenics - Artigo]]
