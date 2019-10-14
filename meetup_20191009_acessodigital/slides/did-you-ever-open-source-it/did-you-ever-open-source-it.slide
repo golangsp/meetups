@@ -1,0 +1,83 @@
+Did you ever open source it?
+9 Oct 2019
+
+Thiago Lemos
+
+tclemos@outlook.com
+
+@tclemos
+
+http://github.com/tclemos
+
+https://www.linkedin.com/in/tclemos/
+
+http://github.com/tclemos/talks/
+
+* What comes to your mind when you think about open source?
+
+* What I thought it was before starting doing...
+- Working for free
+- Tasks that nobody wants to do
+- Crazy projects
+- Bug fixes
+- Adding Tests
+- I can't help because I'm not capable
+- There are only BIG projects that are open source
+
+* You know what? It is just FUN!
+
+* I have an invitation for you!
+
+* 
+.image img/avengers.png _ 900
+
+* 
+.image img/hf2019.png _ 800
+.caption [[https://hacktoberfest.digitalocean.com/]]
+
+* What if I tell you, that you can start having FUN right now?
+* What if I tell you, that there is GAME, that's Open Source and made with Go?
+
+* This is a game that I started few days ago, Flappy Gopher!
+.video vid/flappy-gopher-w-trunks.mov video/mp4 _ 800
+
+* This an open source game, made with Go!
+
+* Let me show how it works.
+
+* We started this way, this was the first version ever.
+.video vid/flappy-gopher-first-version.mp4 video/mp4 _ 800
+
+* Then with some motivation and a lot of FUN we got this.
+.video vid/flappy-gopher-w-sprite.mov video/mp4 _ 600
+
+* After that we got clouds and better color!
+.video vid/flappy-gopher-w-clouds.mp4 video/mp4 _ 800
+
+* Up in the sky, look: It's a bird. It's a plane. It's SuperGopher!
+.video vid/flappy-gopher-w-grass.mov video/mp4 _ 800
+
+* Holy s**t, now we have textures for the trunks!!
+.video vid/flappy-gopher-w-trunks.mov video/mp4 _ 800
+
+* But I still need help to:
+- Add collision - [[https://github.com/tclemos/flappy-gopher/issues/1]]
+- Game Score - [[https://github.com/tclemos/flappy-gopher/issues/2]]
+- Scoreboard - [[https://github.com/tclemos/flappy-gopher/issues/3]]
+
+* Other ideas
+- A player sprite with animations(moving cape, acrobatics)
+- Other elements flying around(birds, planes)
+- Daylight changes, day, night, afternoon, sunset, sunrise
+- A moving trunk after the first 10
+- A tighter trunk
+- A random item that can be collected and works like Mario star
+- A random item that give the player extra points
+- Lifes(chances) to continue
+- Ability to continue by exchanging part of the current score by a new chance
+- Sound effects
+- Background music
+
+* Also, maybe you'll find a better way to do something that is already implemented
+* The point is, support open source projects and have FUN!
+
